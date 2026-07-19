@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本地离线分析微信和支付宝 CSV 账单，生成消费分类、高频商户和省钱提醒。文件不会上传。">
+  <title>钱迹体检器｜离线账单分析</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <span class="eyebrow">账单只留在你的设备</span>
+      <h1>钱花到哪了，三分钟看清。</h1>
+      <p>导入微信或支付宝 CSV，自动生成消费分类、高频商户和可执行的省钱提醒。</p>
+    </header>
+
+    <section class="upload-card" aria-labelledby="upload-title">
+      <div>
+        <h2 id="upload-title">导入账单</h2>
+        <p>可多选 CSV。页面没有服务器，文件不会上传。</p>
+      </div>
+      <div class="actions">
+        <label class="button primary" for="bill-files">选择 CSV</label>
+        <input id="bill-files" type="file" accept=".csv,text/csv" multiple hidden>
+        <button id="demo-button" class="button secondary" type="button">加载演示账单</button>
+        <button id="clear-button" class="button ghost" type="button">清空</button>
+      </div>
+      <div id="drop-zone" class="drop-zone" tabindex="0">也可以把账单拖到这里</div>
+      <p id="status" class="status" role="status">尚未导入账单</p>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden" aria-live="polite">
+      <div class="dashboard-head">
+        <div>
+          <span class="eyebrow">本次账单体检</span>
+          <h2 id="period-title">消费概览</h2>
+        </div>
+        <button id="print-button" class="button secondary" type="button">打印 / 保存 PDF</button>
+      </div>
+
+      <div class="metrics">
+        <article><span>总支出</span><strong id="expense-value">¥0</strong></article>
+        <article><span>总收入</span><strong id="income-value">¥0</strong></article>
+        <article><span>净结余</span><strong id="balance-value">¥0</strong></article>
+        <article><span>交易笔数</span><strong id="count-value">0</strong></article>
+      </div>
+
+      <div class="grid">
+        <article class="panel">
+          <h3>支出去向</h3>
+          <div id="category-list" class="bar-list"></div>
+        </article>
+        <article class="panel">
+          <h3>最常消费</h3>
+          <ol id="merchant-list" class="rank-list"></ol>
+        </article>
+      </div>
+
+      <article class="panel advice-panel">
+        <div>
+          <span class="eyebrow">可执行，不说空话</span>
+          <h3>本月三条提醒</h3>
+        </div>
+        <div id="advice-list" class="advice-list"></div>
+      </article>
+
+      <article class="panel">
+        <h3>高额与重复支出</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>时间</th><th>交易对方</th><th>商品</th><th>分类</th><th>金额</th></tr></thead>
+            <tbody id="notable-table"></tbody>
+          </table>
+        </div>
+      </article>
+      <p class="disclaimer">自动分类仅用于消费整理，不构成投资、理财、税务或会计建议。</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
