@@ -4,6 +4,8 @@
 
 在线演示：<https://hxiao6608-ctrl.github.io/money-checkup/>（即使在线打开，账单仍只在当前浏览器中解析）
 
+首批账单体检服务：<https://github.com/hxiao6608-ctrl/money-checkup/issues/1>。请勿在公开 Issue 中上传账单或个人信息。
+
 ## 解决什么问题
 
 - 把微信、支付宝导出的 CSV 账单合并成统一流水
